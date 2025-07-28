@@ -1,15 +1,19 @@
-import express from 'express'
-import dotenv from 'dotenv'
+import express from "express";
+import helmet from "helmet";
+import morgan from "morgan";
 
+const app = express();
 
-dotenv.config()
-
-const app = express()
-app.use(express.json())
+// Global middleware
+app.use(helmet());
+app.use(express.json());
+app.use(morgan("dev"));
 
 // Health check
-app.get('/api/v1/health', (_, res) => {
-  res.json({ status: 'OK', timestamp: new Date() })
-})
+app.get("/health", (_req, res) => {
+  res.status(200).json({ status: "ok" });
+});
 
-export default app
+// TODO: mount /api/v1/users, /api/v1/wallets, etc.
+
+export default app;
