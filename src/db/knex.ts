@@ -1,9 +1,14 @@
 import knex from 'knex'
 import type { Knex } from 'knex'
 
-const config: { [key: string]: Knex.Config } = require('../../knexfile.js')
+// plain JS config at project root
+const config: { [env: string]: Knex.Config } = require('../../knexfile.js')
 
-const env = process.env.NODE_ENV || 'development'
-const db = knex(config[env])
+const rawEnv = process.env.NODE_ENV || 'development'
+// if that key is missing, fall back to development
+const envConfig = config[rawEnv] || config['development']
+
+const db = knex(envConfig)
 
 export default db
+

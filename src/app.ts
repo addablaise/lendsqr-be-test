@@ -4,6 +4,7 @@ import morgan from 'morgan'
 import authRouter from './modules/auth/auth.controller';
 import authMiddleware from './middlewares/auth.middleware';
 import userRouter from './modules/users/users.controller';
+import walletRouter from './modules/wallets/wallets.controller'
 
 const app = express()
 
@@ -18,6 +19,7 @@ app.get('/health', (_req, res) => {
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/register', userRouter);
 app.use('/api/v1', authMiddleware);
+app.use('/api/v1/wallets', walletRouter)
 // app.use('/api/v1/users', userRouter);
 
 // centralized error handler

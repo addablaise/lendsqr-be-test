@@ -20,7 +20,7 @@ async function checkValue(value: string): Promise<Result> {
 
     await db('blacklist_checks').insert({
       id: uuidv4(),
-      user_payload_hash: value,      // store the value we checked
+      user_payload_hash: value,
       adjutor_request_id: body.meta?.request_id || null,
       result: blacklisted ? 'BLACKLISTED' : 'CLEAR',
       raw_response: JSON.stringify(body)
@@ -39,7 +39,7 @@ async function checkValue(value: string): Promise<Result> {
   }
 }
 
-// check both email and phone via GET calls
+// check both email and phone
 export async function checkBlacklist(
   email: string,
   phone: string
