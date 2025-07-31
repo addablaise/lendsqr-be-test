@@ -2,7 +2,7 @@ import { Knex } from 'knex';
 
 export async function up(knex: Knex): Promise<void> {
   await knex.schema.createTable('transfers', table => {
-    table.uuid('id').primary().defaultTo(knex.raw('UUID()'));
+    table.uuid('id').primary();
     table.uuid('from_wallet_id').notNullable()
       .references('id').inTable('wallets')
       .onDelete('CASCADE');
