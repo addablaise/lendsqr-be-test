@@ -1,11 +1,11 @@
-import { createUser } from '../src/modules/users/users.service'
-import db from '../src/db/knex'
-import * as blacklistService from '../src/modules/blacklist/blacklist.service'
+import { createUser } from '../modules/users/users.service'
+import db from '../db/knex'
+import * as blacklistService from '../modules/blacklist/blacklist.service'
 import bcrypt from 'bcrypt'
 import crypto from 'crypto'
 import { v4 as uuidv4 } from 'uuid'
 
-jest.mock('../src/db/knex')
+jest.mock('../../src/db/knex')
 jest.mock('../src/modules/blacklist/blacklist.service')
 jest.mock('bcrypt')
 jest.mock('crypto')
